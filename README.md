@@ -4,11 +4,11 @@ Este repositorio tiene como objetivo presentar el test para Senior Sysops de Mar
 
 # Modo de uso
 
-Correr los siguientes comandos en el orden indicado:
-`terraform init`
-`terraform apply`
-`aws eks update-kubeconfig --name Senior-SysOps-test --region us-east-1`
-`kubectl get nodes`
+Correr los siguientes comandos en el orden indicado:  
+`terraform init`  
+`terraform apply`  
+`aws eks update-kubeconfig --name Senior-SysOps-test --region us-east-1`  
+`kubectl get nodes`  
 
 generate new credentials for SysOps-test- user1 in the AWS console and create a local AWS profile
 `aws configure --profile SysOps-test-user1`
