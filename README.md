@@ -1,40 +1,40 @@
-# SysOps test
+# SysOps test  
 
-Este repositorio tiene como objetivo presentar el test para Senior Sysops de Marfeel.
+This repository has the objective of presenting the Senior SysOps test for Marfeel.  
+# How to use it  
 
-# Modo de uso
-
-Correr los siguientes comandos en el orden indicado:  
+Run the following commands:    
 `terraform init`  
 `terraform apply`  
 `aws eks update-kubeconfig --name Senior-SysOps-test --region us-east-1`  
 `kubectl get nodes`  
 
-generate new credentials for SysOps-test- user1 in the AWS console and create a local AWS profile
-`aws configure --profile SysOps-test-user1`
-`aws sts get-caller-identity --profile SysOps-test-user1`
+generate new credentials for SysOps-test- user1 in the AWS console and create a local AWS profile  
 
-add this to the .aws/config file
+`aws configure --profile SysOps-test-user1`  
+`aws sts get-caller-identity --profile SysOps-test-user1`  
 
->[profile eks-admin]
->role_arn = arn:aws:iam::[accountnumber]]:role/eks-admin
->source_profile = SysOps-test-user1
+add this to the .aws/config file  
+
+>[profile eks-admin]  
+>role_arn = arn:aws:iam::[accountnumber]]:role/eks-admin  
+>source_profile = SysOps-test-user1  
+
+then run:  
+`aws sts get-caller-identity --profile eks-admin`  
+`aws eks update-kubeconfig --name Senior-SysOps-test --region us-east-1 --profile eks-admin`  
+apply nginx:  
+`kubectl apply -f k8s/nginx.yaml`  
+`watch -n 1 -t kubectl get nodes`  
+apply echoserver:  
+`kubectl apply -f k8s/echoserver.yaml`  
+`kubectl get ingress`  
 
 
-`aws sts get-caller-identity --profile eks-admin`
-`aws eks update-kubeconfig --name Senior-SysOps-test --region us-east-1 --profile eks-admin`
-apply nginx
-`kubectl apply -f k8s/nginx.yaml`
-`watch -n 1 -t kubectl get nodes`
-apply echoserver
-`kubectl apply -f k8s/echoserver.yaml`
-`kubectl get ingress`
 
+# Costs:  
 
-
-# Costos
-
-El costo estimado se calculó usando la herramienta [Infracosts](https://www.infracost.io/docs/features/cli_commands/), el resultado es el siguiente:
+The estimated cost was calculated using the tool [Infracosts](https://www.infracost.io/docs/features/cli_commands/), this is the result:  
 
 | Name                                        | Monthly Qty                                  | Unit  | Monthly Cost |   |
 |---------------------------------------------|----------------------------------------------|-------|--------------|---|
@@ -50,7 +50,7 @@ El costo estimado se calculó usando la herramienta [Infracosts](https://www.inf
 | OVERALL TOTAL                               |                                              |       | $105.85      |   |
 
 
-# Autor
+# Author:  
 
 Aquiles Calvo, Cloud Engineer & Architect. 
 Buenos Aires, Argetina.
